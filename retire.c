@@ -24,12 +24,11 @@ int main(int argc, char const *argv[]) {
 
   double inflatAdjROR = ((1 + rateOfReturn) / (1 + inflation)) - 1;             //creating rate of return adjusted for inflation
 
-  printf("Month Interest Balance\n");
-
-  if (monthCont > 18500) {
+  if ((monthCont * 12) > 18500) {
     printf ("Illegal: monthly contributions exceed $18,500 annual limit.");     //printing warning if contribution is not allowed
   }
   else{
+    printf("Month Interest Balance\n");
     for(int i = 1; i <= numMonths; i++) {                                       //calculating interest and balance my month and adding to totals
       currInterest = currBalance * (inflatAdjROR / 12);
       currInterest = round(currInterest * 100) / 100;                           //rounds to nearest cent
