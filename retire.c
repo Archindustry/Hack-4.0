@@ -26,22 +26,22 @@ int main(int argc, char const *argv[]) {
 
   printf("Month Interest Balance\n");
 
-  for(int i = 1; i <= numMonths; i++) {                                         //calculating interest and balance my month and adding to totals
-    currInterest = currBalance * (inflatAdjROR / 12);
-    currInterest = round(currInterest * 100) / 100;                             //rounds to nearest cent
-    currBalance = currBalance + monthCont + currInterest;
-    currBalance = round(currBalance * 100) / 100;
-    totalInterest += currInterest;
-    totalNest = currBalance;
-    printf("%d $ %.2lf $ %.2lf\n", i, currInterest, currBalance);
+  if (monthCont > 18500) {
+    printf ("Illegal: monthly contributions exceed $18,500 annual limit.");     //printing warning if contribution is not allowed
   }
-
-  printf("Total Interest Earned: $ %.2lf\n", totalInterest);
-  printf("Total Nest Egg: $ %.2lf\n", totalNest);
-
-
-
-
+  else{
+    for(int i = 1; i <= numMonths; i++) {                                       //calculating interest and balance my month and adding to totals
+      currInterest = currBalance * (inflatAdjROR / 12);
+      currInterest = round(currInterest * 100) / 100;                           //rounds to nearest cent
+      currBalance = currBalance + monthCont + currInterest;
+      currBalance = round(currBalance * 100) / 100;
+      totalInterest += currInterest;
+      totalNest = currBalance;
+      printf("%d $ %.2lf $ %.2lf\n", i, currInterest, currBalance);
+    }
+    printf("Total Interest Earned: $ %.2lf\n", totalInterest);
+    printf("Total Nest Egg: $ %.2lf\n", totalNest);
+  }
 
   return 0;
 }
